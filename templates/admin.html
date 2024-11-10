@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подбор кандидатов на вакансию по типу личности</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h1 {
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        video {
+            max-width: 100%;
+            border-radius: 3%;
+            height: auto;
+        }
+
+        .btn-primary {
+            background-color: #6f42c1;
+            border-color: #6f42c1;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a339b;
+            border-color: #5a339b;
+        }
+
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+            transition: transform .2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Статичный градиент с черным, зеленым и фиолетовым цветами */
+            background: linear-gradient(135deg, #001607, #800080);
+            background-size: cover;
+            position: relative;
+            /* Устанавливаем позиционирование */
+        }
+
+        header {
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+            background-color: transparent;
+            position: relative;
+            top: 0;
+            z-index: 10;
+        }
+
+        header img {
+            max-width: 150px;
+        }
+
+        .frames-container {
+            margin-top: 100px;
+            /* Отступ для контента под фиксированным хедером */
+            flex: 1;
+            /* Позволяет контейнеру занимать оставшееся пространство */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-file-upload {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+
+        .file-name {
+            display: block;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100"> <!-- Добавлено для вертикального центрирования -->
+    <header class=""> <!-- Добавлено mt-auto для отталкивания футера вниз -->
+        <img src="{{ url_for('static', filename='images/cp-logo.png') }}" alt="Logo" style="max-width: 300px;">
+        <img src="{{ url_for('static', filename='images/minrf.png') }}" alt="Logo" style="max-width: 300px;">
+        <img src="{{ url_for('static', filename='images/rsv.png') }}" alt="Logo" style="max-width: 150px;">
+    </header>
+    <div class="container mt-5 mb-auto"> <!-- Используем mb-auto для отступа сверху -->
+        <div id="videoContainer" class="text-center mt-4">
+            <button id="selectPeople" class="btn btn-primary mt-3">Выбрать людей под вакансию</button>
+            <button id="showAllVideos" class="btn btn-primary mt-3">Посмотреть все визитки</button>
+        </div>
+        <div id="durationContainer" class="text-center mt-4 d-flex flex-wrap justify-content-center"></div>
+        <div id="loadingContainer" class="text-center mt-4" style="display: none; color: white;">
+            <p>Подождите, пожалуйста...</p>
+            <img src="{{ url_for('static', filename='images/anim.gif') }}" alt="Loading...">
+        </div>        
+        <div id="downloadContainer" class="text-center mt-4" style="display: none;">
+            <!-- Здесь будет кнопка для скачивания транскрибации -->
+        </div>
+        <div id="analysisContainer" class="text-center mt-4" style="display: none;"></div>      
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.getElementById('selectPeople').addEventListener('click', () => {
+            document.location.href = '/selectPeople';
+        });
+
+        document.getElementById('showAllVideos').addEventListener('click', () => {
+            document.location.href = '/showAllVideos';
+        });
+    </script>
+</body>
+
+</html>

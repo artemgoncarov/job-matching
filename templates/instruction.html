@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подбор кандидатов на вакансию по типу личности</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h1 {
+            margin-bottom: 30px;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #6f42c1;
+            border-color: #6f42c1;
+        }
+        .btn-primary:hover {
+            background-color: #5a339b;
+            border-color: #5a339b;
+        }
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+            transition: transform .2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(135deg, #001607, #800080);
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+        header {
+            background-color: black;
+            text-align: center;
+            padding: 20px;
+            background-color: transparent;
+            position: relative;
+            top: 0;
+            z-index: 10;
+        }
+        header img {
+            max-width: 150px;
+        }
+        .info-box {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <img src="{{ url_for('static', filename='images/cp-logo.png') }}" alt="Logo" style="max-width: 300px;">
+        <img src="{{ url_for('static', filename='images/minrf.png') }}" alt="Logo" style="max-width: 300px;">
+        <img src="{{ url_for('static', filename='images/rsv.png') }}" alt="Logo" style="max-width: 150px;">
+    </header>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Описание OCEAN</h1>
+
+        <!-- Кнопка для показа/скрытия описания -->
+        <button id="toggleButton" class="btn btn-primary mb-3">Показать описание</button>
+        
+        <!-- Блок с описанием, скрытый по умолчанию -->
+        <div id="infoBox" class="info-box p-4" style="display: none;">
+            <h3 class="text-center mb-3">Модель OCEAN</h3>
+            <p>Модель OCEAN (или Big Five) представляет пять основных черт личности. Каждая из этих черт помогает глубже понять индивидуальные особенности и предпочтения человека:</p>
+            <ul>
+                <li><strong>O (Openness) — Открытость:</strong> склонность к новым идеям, творчеству и любознательности.</li>
+                <li><strong>C (Conscientiousness) — Добросовестность:</strong> уровень организованности, дисциплинированности и ответственности.</li>
+                <li><strong>E (Extraversion) — Экстраверсия:</strong> ориентация на общение, активность и взаимодействие с окружающими.</li>
+                <li><strong>A (Agreeableness) — Доброжелательность:</strong> стремление к сотрудничеству, дружелюбие и отзывчивость.</li>
+                <li><strong>N (Neuroticism) — Нейротизм:</strong> эмоциональная нестабильность, склонность к тревоге и резкой смене настроений.</li>
+            </ul>
+
+            <h3 class="text-center mt-4 mb-3">Модель MBTI</h3>
+            <p>MBTI (Myers-Briggs Type Indicator) — типология, основанная на четырёх парах противоположных предпочтений. Комбинация этих черт формирует 16 уникальных типов личности:</p>
+            <ul>
+                <li><strong>E/I — Экстраверсия и Интроверсия:</strong>
+                    <ul>
+                        <li><strong>E:</strong> предпочитает активное общение и взаимодействие с людьми.</li>
+                        <li><strong>I:</strong> ориентирован на внутренний мир и сосредоточен на размышлениях.</li>
+                    </ul>
+                </li>
+                <li><strong>S/N — Сенсорика и Интуиция:</strong>
+                    <ul>
+                        <li><strong>S:</strong> фокусируется на фактах, конкретной информации и деталях.</li>
+                        <li><strong>N:</strong> ориентирован на обобщённые идеи, концепции и возможности.</li>
+                    </ul>
+                </li>
+                <li><strong>T/F — Мышление и Чувствование:</strong>
+                    <ul>
+                        <li><strong>T:</strong> принимает решения на основе логики и анализа.</li>
+                        <li><strong>F:</strong> учитывает ценности, эмоции и чувства других людей при принятии решений.</li>
+                    </ul>
+                </li>
+                <li><strong>J/P — Суждение и Восприятие:</strong>
+                    <ul>
+                        <li><strong>J:</strong> предпочитает порядок, планирование и структурированность.</li>
+                        <li><strong>P:</strong> более гибок, открыт к новым возможностям и предпочитает спонтанность.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("toggleButton").addEventListener("click", function() {
+            var infoBox = document.getElementById("infoBox");
+            if (infoBox.style.display === "none") {
+                infoBox.style.display = "block";
+                this.textContent = "Скрыть описание";
+            } else {
+                infoBox.style.display = "none";
+                this.textContent = "Показать описание";
+            }
+        });
+    </script>
+</body>
+</html>
